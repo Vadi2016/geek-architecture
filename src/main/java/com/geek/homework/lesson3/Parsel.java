@@ -54,6 +54,10 @@ public class Parsel {
             return this;
         }
 
+        Parsel build() {
+            return parsel;
+        }
+
     }
 }
 
