@@ -46,23 +46,17 @@ public class Test {
                         "2 - Credit Card");
                 String paymentMethod = reader.readLine();
 
-                // Клиент создаёт различные стратегии на основании
-                // пользовательских данных, конфигурации и прочих параметров.
                 if (paymentMethod.equals("1")) {
                     strategy = new PayByPayPal();
                 } else {
                     strategy = new PayByCreditCard();
                 }
 
-                // Объект заказа делегирует сбор платёжных данны стратегии, т.к.
-                // только стратегии знают какие данные им нужны для приёма
-                // оплаты.
                 order.processOrder(strategy);
 
                 System.out.print("Pay " + order.getTotalCost() + " units or Continue shopping? P/C: ");
                 String proceed = reader.readLine();
                 if (proceed.equalsIgnoreCase("P")) {
-                    // И наконец, стратегия запускает приём платежа.
                     if (strategy.pay(order.getTotalCost())) {
                         System.out.println("Payment has been successful.");
                     } else {
