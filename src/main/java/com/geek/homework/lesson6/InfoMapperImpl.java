@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 class InfoMapperImpl implements InfoMapper {
 
@@ -18,6 +18,8 @@ class InfoMapperImpl implements InfoMapper {
     private static PreparedStatement selectAllInfoPreparedStmt;
 
     private static PreparedStatement insertInfoPreparedStmt;
+
+    Map<Long, Info> allInfo = new HashMap<Long, Info>();
 
     InfoMapperImpl() {
         ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
@@ -54,17 +56,16 @@ class InfoMapperImpl implements InfoMapper {
 
     }
 
-    public List<Info> readAllInfo() {
+    public Map<Long, Info> readAllInfo(Info info) {
         try {
-            List<Info> allInfo = new ArrayList<Info>();
+
             ResultSet resultSetForAllInfo = selectAllInfoPreparedStmt.executeQuery();
 
             while (resultSetForAllInfo.next()) {
-                Info info = new Info();
                 info.setId(resultSetForAllInfo.getLong("id"));
                 info.setSubject(resultSetForAllInfo.getString("subject"));
                 info.setDescription(resultSetForAllInfo.getString("description"));
-                allInfo.add(info);
+                allInfo.put(info.getId(), info);
             }
             return allInfo;
 

@@ -1,13 +1,12 @@
 package com.geek.homework.lesson6;
 
-import java.sql.Connection;
-import java.util.List;
+import java.util.Map;
 
 public interface InfoMapper {
 
     boolean insert(Info info);
 
-    List<Info> readAllInfo();
+    Map<Long, Info> readAllInfo(Info info);
 
     boolean update(Info info);
 
