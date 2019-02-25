@@ -12,7 +12,7 @@ class InfoMapperImpl implements InfoMapper {
     private static final String insertInfoQuery = "INSERT INTO info" +
             " (id," +
             " subject, " +
-            " description,)" +
+            " description)" +
             " VALUES (?, ?, ?, ?, ?, ?)";
 
     private static PreparedStatement selectAllInfoPreparedStmt;
@@ -27,7 +27,7 @@ class InfoMapperImpl implements InfoMapper {
             Connection connection = connectionFactory.getConnection();
             insertInfoPreparedStmt = connection.prepareStatement(insertInfoQuery);
             String selectAllInfoQuery = "SELECT id, subject, description FROM info;";
-            PreparedStatement selectAllInfoPreparedStmt = connection.prepareStatement(selectAllInfoQuery);
+            selectAllInfoPreparedStmt = connection.prepareStatement(selectAllInfoQuery);
         } catch (SQLException e) {
             e.printStackTrace();
         }
