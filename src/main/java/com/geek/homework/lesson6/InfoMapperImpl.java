@@ -58,9 +58,7 @@ class InfoMapperImpl implements InfoMapper {
 
     public Map<Long, Info> readAllInfo(Info info) {
         try {
-
             ResultSet resultSetForAllInfo = selectAllInfoPreparedStmt.executeQuery();
-
             while (resultSetForAllInfo.next()) {
                 info.setId(resultSetForAllInfo.getLong("id"));
                 info.setSubject(resultSetForAllInfo.getString("subject"));
